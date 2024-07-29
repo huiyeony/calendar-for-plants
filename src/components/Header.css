@@ -1,0 +1,15 @@
+.Header {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+}
+.Header .header_left {
+  width: 25%;
+}
+.Header .header_center {
+  width: 50%;
+}
+.Header .header_right {
+  width: 25%;
+}
