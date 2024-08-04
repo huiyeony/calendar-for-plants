@@ -1,0 +1,24 @@
+.Editor {
+  display: flex;
+  flex-direction: column;
+}
+.Editor > section {
+  margin-bottom: 20px;
+}
+.Editor .category_section .items_wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: 2%;
+}
+
+.Editor .content_section > textarea {
+  padding: 20px;
+  width: 100%;
+  min-height: 180px;
+  box-sizing: border-box;
+  resize: vertical;
+}
+.Editor .button_section {
+  display: flex;
+  justify-content: space-between;
+}

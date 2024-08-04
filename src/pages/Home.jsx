@@ -1,26 +1,38 @@
 import './Home.css'
 import Header from '../components/Header'
 import Button from '../components/Button'
+import Calendar from '../components/Calendar'
+import Viewer from '../components/Viewer'
 import { useContext } from 'react'
-import CalendarBody from '../components/CalendarBody'
-import { MyContext } from '../App'
+import { CalendarContext } from '../App'
 const Home = () => {
   console.log('Home 컴포넌트 렌더링')
   const { pivotDate, daysInMonth, dispatch, selectedDate } =
-    useContext(MyContext)
+    useContext(CalendarContext)
 
   return (
     <>
       <Header
-        leftChild={<Button text="<" onClick={dispatch.handlePrevMonth} />}
+        leftChild={
+          <Button
+            text={` < `}
+            onClick={dispatch.handlePrevMonth}
+          />
+        }
         center={`${pivotDate.year}년 ${pivotDate.month}월`}
-        rightChild={<Button text=">" onClick={dispatch.handleNextMonth} />}
+        rightChild={
+          <Button
+            text={` > `}
+            onClick={dispatch.handleNextMonth}
+          />
+        }
       />
-      <CalendarBody
+      <Calendar
         pivotDate={pivotDate}
         daysInMonth={daysInMonth}
         selectedDate={selectedDate}
       />
+      <Viewer />
     </>
   )
 }

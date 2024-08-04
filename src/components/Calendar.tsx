@@ -1,7 +1,5 @@
 import styled from 'styled-components'
 import React from 'react'
-import { useContext } from 'react'
-import { MyContext } from '../App'
 
 const Container = styled.div`
   display: flex;
@@ -21,8 +19,13 @@ const Day = styled.div<{
   $isSunday: boolean
 }>`
   background-color: ${(props) =>
-    props.$isSelectedDay ? '#dee2e6' : props.$isSunday ? '#f5f7fa' : '#ffffff'};
-  color: ${(props) => (!props.$isCurrentMonth ? '#d5dee8' : '#000000')};
+    props.$isSelectedDay
+      ? '#dee2e6'
+      : props.$isSunday
+      ? '#f5f7fa'
+      : '#ffffff'};
+  color: ${(props) =>
+    !props.$isCurrentMonth ? '#d5dee8' : '#000000'};
   padding: 10px;
   display: flex;
   flex-direction: column;
@@ -34,9 +37,14 @@ const Day = styled.div<{
 const CalendarItem = styled.div<{ $isSunday: boolean }>`
   display: flex;
   justify-content: center;
-  color: ${(props) => (props.$isSunday ? '#d5dee8' : '#000000')};
+  color: ${(props) =>
+    props.$isSunday ? '#d5dee8' : '#000000'};
 `
-const CalendarBody = ({ pivotDate, daysInMonth, selectedDate }) => {
+const Calendar = ({
+  pivotDate,
+  daysInMonth,
+  selectedDate,
+}) => {
   console.log('Calendar Body 컴포넌트 렌더링')
   const weeks = ['일', '월', '화', '수', '목', '금', '토']
 
@@ -54,9 +62,13 @@ const CalendarBody = ({ pivotDate, daysInMonth, selectedDate }) => {
         {daysInMonth.map((day) => (
           <Day
             key={day.date}
-            onClick={() => selectedDate.selectDate(day.date)}
+            onClick={() =>
+              selectedDate.selectDate(day.date)
+            }
             $isCurrentMonth={pivotDate.month === day.month}
-            $isSelectedDay={selectedDate.selectedDate === day.date}
+            $isSelectedDay={
+              selectedDate.selectedDate === day.date
+            }
             $isSunday={day.dayIndexOrWeek === 0}
           >
             {day.day}일
@@ -67,4 +79,4 @@ const CalendarBody = ({ pivotDate, daysInMonth, selectedDate }) => {
   )
 }
 
-export default CalendarBody
+export default Calendar
